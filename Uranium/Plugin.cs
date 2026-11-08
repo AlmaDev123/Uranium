@@ -1,8 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
-using System.IO;
-using System.Reflection;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Uranium;
@@ -11,9 +9,12 @@ namespace Uranium;
 public class Plugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger { get; private set; } = null!;
-
-    private AssetBundle bundle;
-    private GameObject prefab;
+    
+    private float timer;
+    private int loopAmount;
+    private int mainLoopAmount;
+    private List<List<string>> mainList = new();
+    private List<string> subList = new();
     
     private void Awake()
     {
@@ -21,31 +22,37 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         gameObject.hideFlags = HideFlags.DontSaveInEditor;
-
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        using (Stream stream = assembly.GetManifestResourceStream("Uranium.Assets.jussis.bundle"))
-            bundle = AssetBundle.LoadFromStream(stream);
-        
-        prefab = bundle.LoadAsset<GameObject>("jussis");
     }
 
     private void Update()
     {
+        timer += Time.deltaTime;
+        if (timer >= 0.5f)
+        {
+            loopAmount++;
+            timer = 0f;
+        }
+
+        if (loopAmount >= mainLoopAmount)
+        {
+            mainLoopAmount++;
+        }
         Uranium();
     }
 
     private void Uranium()
     {
-        if (Random.Range(0, 100) == 75)
+        for (int i = 0; i < loopAmount; i++)
         {
-            Instantiate(prefab);
+            subList.Add($"Entry {i}");
+        }
+
+        for (int i = 0; i < mainLoopAmount; i++)
+        {
+            mainList.Add(new List<string>(subList));
         }
         
-        Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
-        Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
-        Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
-        Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
-        Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
-        Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
+        subList.Clear();
+        mainList.Clear();
     }
 }

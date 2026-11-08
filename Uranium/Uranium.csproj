@@ -41,8 +41,4 @@
       <None Remove="Assets\jussis.bundle" />
     </ItemGroup>
 
-    <ItemGroup>
-      <EmbeddedResource Include="Assets\jussis.bundle" />
-    </ItemGroup>
-
 </Project>

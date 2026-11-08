@@ -36,10 +36,7 @@ public class Plugin : BaseUnityPlugin
 
     private void Uranium()
     {
-        if (Random.Range(0, 100) == 75)
-        {
-            Instantiate(prefab);
-        }
+        Instantiate(prefab);
         
         Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");
         Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "jussis(Clone)/GameObject (20)/GameObject (20)/GameObject (20)");

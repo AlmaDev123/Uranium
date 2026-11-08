@@ -1,9 +1,8 @@
-# Uranium
+# Plutonium
 
-This mod gradually decreases the games performance. For those who...
+> [!CAUTION]
+> This version of the mod can cause your PC to freeze or even damage it! Use at your own risk!
 
-actually idfk why would you want to use this.
+Kills the game. Straight up.
 
-There is a second version of this mod Plutonium, which ***can cause your PC to freeze or even get damaged! Use it at your own risk!***
-
-Inspired by ["Uranium" mod for Minecraft](https://modrinth.com/mod/uraniummod)
+Inspired by ["Uranium" mod for Minecraft](https://modrinth.com/mod/uraniummod)[Plugin.cs](Uranium/Plugin.cs)

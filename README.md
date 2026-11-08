@@ -1,4 +1,4 @@
-# Plutonium
+# Polonium
 
 > [!CAUTION]
 > This version of the mod can cause your PC to freeze or even damage it! Use at your own risk!
